@@ -103,6 +103,9 @@ class _SubFormularioState extends State<SubFormulario> {
             }).toList(), 
             onChanged: (value){}),*/
           DropdownButtonFormField<String>(
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.input)
+            ),
             //isExpanded: true,
             items: 	lista.map((lista){
               return DropdownMenuItem(
