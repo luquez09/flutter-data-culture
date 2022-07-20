@@ -102,19 +102,50 @@ class _SubFormularioState extends State<SubFormulario> {
                 );
             }).toList(), 
             onChanged: (value){}),*/
-          DropdownButton<String>(
-            isExpanded: true,
+          DropdownButtonFormField<String>(
+            //isExpanded: true,
             items: 	lista.map((lista){
               return DropdownMenuItem(
                 value: lista,
-                child: Text(' $lista'
+                child: Text('Turismo $lista'
                 ));
             }).toList(), 
             onChanged: (value) => setState(() {
               vista = value;
             }),hint: Text('$vista'),
             ),
-            TextFormField(),
+
+            TextFormField(
+              decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.location_on),
+                labelText: 'Ubicacion',
+                border: OutlineInputBorder()),
+            /* onSaved: (value) {
+               = value!;
+            },
+             validator: (value) {
+              if (value!.isEmpty) {
+                return "Digite Nombre de la Empresa";
+              }
+            },*/
+            ),
+          const SizedBox(height: 10),
+          TextFormField(
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.business_center_rounded),
+              labelText: 'Tipo de Empresa',
+              border: OutlineInputBorder()
+              /* onSaved: (value) {
+               = value!;
+            },
+             validator: (value) {
+              if (value!.isEmpty) {
+                return "Digite Nombre de la Empresa";
+              }
+            },*/
+            ),
+
+          ),
           const SizedBox(height: 10),
           ElevatedButton(
             child: const Text("Guardar"),
