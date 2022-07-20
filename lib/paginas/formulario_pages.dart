@@ -114,6 +114,7 @@ class _SubFormularioState extends State<SubFormulario> {
               vista = value;
             }),hint: Text('$vista'),
             ),
+            TextFormField(),
           const SizedBox(height: 10),
           ElevatedButton(
             child: const Text("Guardar"),
