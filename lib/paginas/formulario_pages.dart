@@ -33,12 +33,13 @@ class SubFormulario extends StatefulWidget {
 }
 
 class _SubFormularioState extends State<SubFormulario> {
-  late final String razonSocial;
+  late String razonSocial;
   late String nombreEmp;
   late int capacidad;
   late String tipoTurismo;
   final lista = ["Cultural", "Rural", "Ecoturismo", "Bienestar"];
-  String? vista = 'Seleccione Un Tipo de Turismo';
+  //String? vista = 'Seleccione Un Tipo de Turismo';
+  late int selectedValue = 0;
 
   final GlobalKey formKey = GlobalKey<FormState>();
 
@@ -62,6 +63,23 @@ class _SubFormularioState extends State<SubFormulario> {
               }
             },*/
           ),
+          Row(children: [
+            const Padding(padding: EdgeInsets.all(10)),
+            Radio(value: 1, 
+            groupValue: selectedValue, 
+            onChanged: (value)=> setState(() => selectedValue = 1)
+            ),
+            const Text('Persona Natural'),
+            const Padding(padding: EdgeInsets.all(8)),
+            Radio(value: 2, 
+            groupValue: selectedValue, 
+            onChanged: (value)=> setState(() => selectedValue = 2)
+            ),
+             const Text('Persona Jurídica'),
+          ],
+          
+          ),
+
           const SizedBox(height: 10),
           TextFormField(
             decoration: const InputDecoration(
@@ -92,8 +110,9 @@ class _SubFormularioState extends State<SubFormulario> {
               }
             },*/
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 15),
           const Text('Tipo de Turismo'),
+          const SizedBox(height: 10),
           /*DropdownButtonFormField(
             children: listaOpciones.map((e){
               return DropdownMenuItem(
@@ -104,22 +123,20 @@ class _SubFormularioState extends State<SubFormulario> {
             onChanged: (value){}),*/
           DropdownButtonFormField<String>(
             decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.input)
+              prefixIcon: Icon(Icons.input),
+              border: OutlineInputBorder(),
             ),
             //isExpanded: true,
-            items: 	lista.map((lista){
+            items: lista.map((lista) {
               return DropdownMenuItem(
-                value: lista,
-                child: Text('Turismo $lista'
-                ));
-            }).toList(), 
-            onChanged: (value) => setState(() {
-              vista = value;
-            }),hint: Text('$vista'),
-            ),
-
-            TextFormField(
-              decoration: const InputDecoration(
+                  value: lista, child: Text('Turismo $lista'));
+            }).toList(),
+            onChanged: (value) => setState(() {}),
+            hint: const Text('Seleccione Un Tipo de Turismo'),
+          ),
+          const SizedBox(height: 10),
+          TextFormField(
+            decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.location_on),
                 labelText: 'Ubicacion',
                 border: OutlineInputBorder()),
@@ -131,14 +148,14 @@ class _SubFormularioState extends State<SubFormulario> {
                 return "Digite Nombre de la Empresa";
               }
             },*/
-            ),
+          ),
           const SizedBox(height: 10),
           TextFormField(
             decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.business_center_rounded),
-              labelText: 'Tipo de Empresa',
-              border: OutlineInputBorder()
-              /* onSaved: (value) {
+                prefixIcon: Icon(Icons.business_center_rounded),
+                labelText: 'Tipo de Empresa',
+                border: OutlineInputBorder()
+                /* onSaved: (value) {
                = value!;
             },
              validator: (value) {
@@ -146,8 +163,7 @@ class _SubFormularioState extends State<SubFormulario> {
                 return "Digite Nombre de la Empresa";
               }
             },*/
-            ),
-
+                ),
           ),
           const SizedBox(height: 10),
           ElevatedButton(
